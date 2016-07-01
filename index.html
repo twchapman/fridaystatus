@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Friday Status</title>
+    <style>
+        body {
+            margin: 0;
+            color: #333;
+            font-size: 50px;
+        }
+
+        .container {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .leftHalf {
+            display: block;
+            width: 50%;
+            height: 100%;
+            float: left;
+            text-align: right;
+        }
+
+        .rightHalf {
+            display: block;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="leftHalf">
+            <strong>Friday status:</strong>
+        </div>
+        <div class="rightHalf">
+            <input id="friday" type="checkbox" disabled="disabled" /><label>Friday</label><br />
+            <input id="notfriday" type="checkbox" disabled="disabled" /><label>Not Friday</label>
+        </div>
+    </div>
+<script>
+    var updateStatus = function() {
+        var today = new Date();
+        if ( today.getDay() == 5 )
+                IsFriday();
+        else
+                IsNotFriday();
+
+        window.requestAnimationFrame(updateStatus);
+    };
+
+    var friday = document.getElementById('friday');
+    var notfriday = document.getElementById('notfriday');
+    var IsFriday = function() {
+        friday.checked = "checked";
+        notfriday.checked = "";
+    };
+    var IsNotFriday = function() {
+        friday.checked = "";
+        notfriday.checked = "checked";
+    };
+
+    window.requestAnimationFrame(updateStatus);
+</script>
+</body>
+</html>
